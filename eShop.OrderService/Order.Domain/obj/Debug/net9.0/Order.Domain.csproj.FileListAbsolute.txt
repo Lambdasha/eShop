@@ -1,0 +1,11 @@
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/bin/Debug/net9.0/Order.Domain.deps.json
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/bin/Debug/net9.0/Order.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/bin/Debug/net9.0/Order.Domain.pdb
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.AssemblyInfoInputs.cache
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.AssemblyInfo.cs
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.csproj.CoreCompileInputs.cache
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/refint/Order.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.pdb
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/ref/Order.Domain.dll
