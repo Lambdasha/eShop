@@ -1,7 +1,10 @@
+using Order.Domain.Entities;
 namespace Order.Domain.Repositories;
-using Entities;
 
-public interface IOrderRepository : IRepository<Order>
+public interface IOrderRepository : IRepository<Entities.Order>
 {
-    Task<IEnumerable<Order>> GetByCustomerIdAsync(int customerId, CancellationToken ct = default);
+    public interface IOrderRepository
+    {
+        Task<IEnumerable<Entities.Order>> GetByCustomerIdAsync(int customerId, CancellationToken ct = default);
+    }
 }

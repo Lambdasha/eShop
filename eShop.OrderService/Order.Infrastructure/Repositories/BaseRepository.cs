@@ -25,7 +25,6 @@ public class BaseRepository<T> : IRepository<T> where T : class
         await _ctx.SaveChangesAsync(ct);
         return entity;
     }
-
     public async Task UpdateAsync(T entity, CancellationToken ct = default)
     {
         _ctx.Entry(entity).State = EntityState.Modified;

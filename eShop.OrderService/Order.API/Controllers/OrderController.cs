@@ -11,11 +11,11 @@ public class OrderController : ControllerBase
     private readonly IOrderService _svc;
     public OrderController(IOrderService svc) => _svc = svc;
 
-    [HttpGet("customer/{customerId}")]
+    [HttpGet("GetCustomerOrders/{customerId}")]
     public async Task<IActionResult> GetByCustomer(int customerId)
         => Ok(await _svc.GetOrdersByCustomerAsync(customerId));
 
-    [HttpGet]
+    [HttpGet("GetAllOrders")]
     public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int size = 10)
         => Ok(await _svc.GetAllOrdersAsync(page, size));
 
@@ -26,14 +26,14 @@ public class OrderController : ControllerBase
         return dto == null ? NotFound() : Ok(dto);
     }
 
-    [HttpPost]
+    [HttpPost("CreateOrder")]
     public async Task<IActionResult> Create(CreateOrderDto dto)
     {
         var id = await _svc.CreateOrderAsync(dto);
         return CreatedAtAction(nameof(Get), new { id }, null);
     }
 
-    [HttpPut("{id}/cancel")]
+    [HttpPut("CancelOrder")]
     public async Task<IActionResult> Cancel(int id)
     {
         await _svc.CancelOrderAsync(id);
