@@ -16,13 +16,18 @@ public class OrderController : ControllerBase
         => Ok(await _svc.GetOrdersByCustomerAsync(customerId));
 
     [HttpGet("GetAllOrders")]
-    public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int size = 10)
-        => Ok(await _svc.GetAllOrdersAsync(page, size));
+    public async Task<IActionResult> GetAll(
+        [FromQuery] int page = 1,
+        [FromQuery] int size = 10)
+    {
+        var result = await _svc.GetAllOrdersAsync(page, size);
+        return Ok(result);
+    }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var dto = await _svc.GetOrderAsync(id);
+        var dto = await _svc.GetOrderByIdAsync(id);
         return dto == null ? NotFound() : Ok(dto);
     }
 

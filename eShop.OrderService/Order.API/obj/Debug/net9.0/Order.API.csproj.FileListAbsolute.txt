@@ -167,3 +167,4 @@
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.API/obj/Debug/net9.0/Order.API.pdb
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.API/obj/Debug/net9.0/Order.API.genruntimeconfig.cache
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.API/obj/Debug/net9.0/ref/Order.API.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.API/obj/Debug/net9.0/Order.API.sourcelink.json

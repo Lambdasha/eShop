@@ -17,3 +17,4 @@
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Infrastructure/obj/Debug/net9.0/Order.Infrastructure.pdb
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Infrastructure/obj/Debug/net9.0/Order.Infrastructure.genruntimeconfig.cache
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Infrastructure/obj/Debug/net9.0/ref/Order.Infrastructure.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Infrastructure/obj/Debug/net9.0/Order.Infrastructure.sourcelink.json

@@ -9,3 +9,4 @@
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/refint/Order.Domain.dll
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.pdb
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/ref/Order.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Domain/obj/Debug/net9.0/Order.Domain.sourcelink.json

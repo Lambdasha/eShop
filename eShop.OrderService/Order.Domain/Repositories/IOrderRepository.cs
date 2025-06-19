@@ -3,8 +3,13 @@ namespace Order.Domain.Repositories;
 
 public interface IOrderRepository : IRepository<Entities.Order>
 {
-    public interface IOrderRepository
-    {
-        Task<IEnumerable<Entities.Order>> GetByCustomerIdAsync(int customerId, CancellationToken ct = default);
-    }
+
+    Task<IEnumerable<Entities.Order>> GetByCustomerIdAsync(int customerId, CancellationToken ct = default);
+    IQueryable<Entities.Order> Query();
+
+    Task<(IEnumerable<Domain.Entities.Order> Orders, int TotalCount)> GetPagedAsync(
+        int page,
+        int pageSize,
+        CancellationToken ct = default);
+
 }

@@ -13,3 +13,4 @@
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Application/obj/Debug/net9.0/refint/Order.Application.dll
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Application/obj/Debug/net9.0/Order.Application.pdb
 /Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Application/obj/Debug/net9.0/ref/Order.Application.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.OrderService/Order.Application/obj/Debug/net9.0/Order.Application.sourcelink.json
