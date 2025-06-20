@@ -1,40 +1,61 @@
+// Order.API/Controllers/ShoppingCartController.cs
+namespace Order.API.Controllers;
+
 using Microsoft.AspNetCore.Mvc;
 using Order.Application.Models;
 using Order.Application.Services;
-
-namespace Order.API.Controllers;
+using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/[controller]")]
 public class ShoppingCartController : ControllerBase
 {
     private readonly IShoppingCartService _svc;
-    public ShoppingCartController(IShoppingCartService svc) => _svc = svc;
+    public ShoppingCartController(IShoppingCartService svc) 
+        => _svc = svc;
 
-    [HttpGet("customer/{customerId}")]
-    public async Task<IActionResult> GetCart(int customerId)
-        => Ok(await _svc.GetCartAsync(customerId));
-
-    [HttpPost("customer/{customerId}/items")]
-    public async Task<IActionResult> AddItem(int customerId, AddCartItemDto dto)
+    /// <summary>
+    /// GET /api/ShoppingCart/GetShoppingCartByCustomerId/{customerId}
+    /// </summary>
+    [HttpGet("GetShoppingCartByCustomerId/{customerId}")]
+    public async Task<ActionResult<ShoppingCartDto?>> GetShoppingCartByCustomerId(int customerId)
     {
-        await _svc.AddItemAsync(customerId, dto);
-        return NoContent();
+        var cart = await _svc.GetShoppingCartByCustomerIdAsync(customerId);
+        if (cart is null)
+            return NotFound();
+        return Ok(cart);
     }
 
-    [HttpDelete("{cartId}/items/{itemId}")]
-    public async Task<IActionResult> RemoveItem(int cartId, int itemId)
+    /// <summary>
+    /// POST /api/ShoppingCart/SaveShoppingCart
+    /// </summary>
+    [HttpPost("SaveShoppingCart")]
+    public async Task<ActionResult<ShoppingCartDto>> SaveShoppingCart([FromBody] ShoppingCartDto dto)
     {
-        await _svc.RemoveItemAsync(cartId, itemId);
-        return NoContent();
+        if (!ModelState.IsValid) 
+            return BadRequest(ModelState);
+
+        var saved = await _svc.SaveShoppingCartAsync(dto);
+        return Ok(saved);
     }
 
-    [HttpPost("customer/{customerId}/checkout")]
-    public async Task<IActionResult> Checkout(int customerId, CheckoutDto dto)
+    /// <summary>
+    /// DELETE /api/ShoppingCart/DeleteShoppingCart/{customerId}
+    /// </summary>
+    [HttpDelete("DeleteShoppingCart/{customerId}")]
+    public async Task<IActionResult> DeleteShoppingCart(int customerId)
     {
-        var orderId = await _svc.CheckoutAsync(customerId, dto);
-        return CreatedAtAction(
-            "Get", // returns to OrderController.Get
-            "Order", new { id = orderId }, null);
+        await _svc.DeleteShoppingCartAsync(customerId);
+        return NoContent();
+    }
+    
+    /// <summary>
+    /// DELETE /api/ShoppingCart/{customerId}/{itemId}
+    /// </summary>
+    [HttpDelete("{customerId}/{itemId}")]
+    public async Task<IActionResult> DeleteCartItem(int customerId, int itemId)
+    {
+        var deleted = await _svc.DeleteShoppingCartItemAsync(customerId, itemId);
+        return deleted ? NoContent() : NotFound();
     }
 }

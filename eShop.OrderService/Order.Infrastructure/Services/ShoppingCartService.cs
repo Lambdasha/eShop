@@ -1,39 +1,30 @@
-using Microsoft.EntityFrameworkCore;
+// Order.Infrastructure/Services/ShoppingCartService.cs
+namespace Order.Infrastructure.Services;
+
 using Order.Application.Models;
 using Order.Application.Services;
 using Order.Domain.Entities;
-using Order.Infrastructure.Data;
-
-namespace Order.Infrastructure.Services;
+using Order.Domain.Repositories;
+using System.Linq;
+using System.Threading.Tasks;
 
 public class ShoppingCartService : IShoppingCartService
 {
-    private readonly OrderDbContext _db;
-    private readonly IOrderService _orderSvc;
+    private readonly IShoppingCartRepository _repo;
 
-    public ShoppingCartService(OrderDbContext db, IOrderService orderSvc)
+    public ShoppingCartService(IShoppingCartRepository repo)
+        => _repo = repo;
+
+    public async Task<ShoppingCartDto?> GetShoppingCartByCustomerIdAsync(int customerId)
     {
-        _db = db;
-        _orderSvc = orderSvc;
-    }
-
-    public async Task<ShoppingCartDto> GetCartAsync(int customerId)
-    {
-        var cart = await _db.ShoppingCarts
-            .Include(c => c.Items)
-            .FirstOrDefaultAsync(c => c.CustomerId == customerId);
-
-        if (cart == null)
-        {
-            cart = new ShoppingCart { CustomerId = customerId };
-            _db.ShoppingCarts.Add(cart);
-            await _db.SaveChangesAsync();
-        }
+        var cart = await _repo.GetByCustomerIdAsync(customerId);
+        if (cart == null) return null;
 
         return new ShoppingCartDto
         {
             Id = cart.Id,
             CustomerId = cart.CustomerId,
+            CustomerName = cart.CustomerName,
             Items = cart.Items.Select(i => new ShoppingCartItemDto
             {
                 Id = i.Id,
@@ -45,73 +36,70 @@ public class ShoppingCartService : IShoppingCartService
         };
     }
 
-    public async Task AddItemAsync(int customerId, AddCartItemDto dto)
+    public async Task<ShoppingCartDto> SaveShoppingCartAsync(ShoppingCartDto dto)
     {
-        var cartDto = await GetCartAsync(customerId);
-        var cart = await _db.ShoppingCarts.Include(c => c.Items)
-            .FirstAsync(c => c.Id == cartDto.Id);
+        // Map DTO → entity
+        var cart = await _repo.GetByCustomerIdAsync(dto.CustomerId)
+                   ?? new ShoppingCart
+                   {
+                       CustomerId = dto.CustomerId,
+                       CustomerName = dto.CustomerName
+                   };
 
-        var existing = cart.Items.FirstOrDefault(i => i.ProductId == dto.ProductId);
-        if (existing != null)
-        {
-            existing.Qty += dto.Qty;
-        }
-        else
+        // Replace items
+        cart.Items.Clear();
+        foreach (var item in dto.Items)
         {
             cart.Items.Add(new ShoppingCartItem
             {
-                ProductId = dto.ProductId,
-                ProductName = dto.ProductName,
-                Qty = dto.Qty,
-                Price = dto.Price
+                ProductId = item.ProductId,
+                ProductName = item.ProductName,
+                Qty = item.Qty,
+                Price = item.Price
             });
         }
 
-        await _db.SaveChangesAsync();
-    }
+        // Persist
+        cart = dto.Id == 0
+            ? await _repo.AddAsync(cart)
+            : await _repo.UpdateAsync(cart);
 
-    public async Task RemoveItemAsync(int cartId, int itemId)
-    {
-        var item = await _db.ShoppingCartItems
-            .FirstOrDefaultAsync(i => i.Id == itemId && i.CartId == cartId);
-        if (item == null) throw new KeyNotFoundException("Cart item not found");
-        _db.ShoppingCartItems.Remove(item);
-        await _db.SaveChangesAsync();
-    }
-
-    public async Task<int> CheckoutAsync(int customerId, CheckoutDto dto)
-    {
-        // 1) Load cart & items
-        var cart = await _db.ShoppingCarts
-            .Include(c => c.Items)
-            .FirstOrDefaultAsync(c => c.CustomerId == customerId);
-        if (cart == null || !cart.Items.Any())
-            throw new InvalidOperationException("Shopping cart is empty.");
-
-        // 2) Build CreateOrderDto
-        var create = new CreateOrderDto
+        // Map back to DTO (with generated Id)
+        return new ShoppingCartDto
         {
-            CustomerId = customerId,
-            CustomerName = "", // you might fetch name elsewhere
-            ShippingAddress = dto.ShippingAddress,
-            ShippingMethod = dto.ShippingMethod,
-            Details = cart.Items.Select(i => new CreateOrderDetailDto
+            Id = cart.Id,
+            CustomerId = cart.CustomerId,
+            CustomerName = cart.CustomerName,
+            Items = cart.Items.Select(i => new ShoppingCartItemDto
             {
+                Id = i.Id,
                 ProductId = i.ProductId,
                 ProductName = i.ProductName,
                 Qty = i.Qty,
-                Price = i.Price,
-                Discount = 0m
+                Price = i.Price
             }).ToList()
         };
+    }
 
-        // 3) Create order
-        var orderId = await _orderSvc.CreateOrderAsync(create);
+    public Task<bool> DeleteShoppingCartAsync(int customerId)
+    {
+        _repo.DeleteByCustomerIdAsync(customerId);
+        return Task.FromResult(true);
+    }
 
-        // 4) Clear cart
-        _db.ShoppingCartItems.RemoveRange(cart.Items);
-        await _db.SaveChangesAsync();
+    public async Task<bool> DeleteShoppingCartItemAsync(int customerId, int itemId)
+    {
+        // 1) Load the cart (with items) for that customer
+        var cart = await _repo.GetByCustomerIdAsync(customerId);
+        if (cart == null) 
+            return false;
 
-        return orderId;
+        // 2) Verify item belongs to this cart
+        var item = cart.Items.FirstOrDefault(i => i.Id == itemId);
+        if (item == null) 
+            return false;
+
+        // 3) Delegate to repo
+        return await _repo.DeleteItemByIdAsync(itemId);
     }
 }

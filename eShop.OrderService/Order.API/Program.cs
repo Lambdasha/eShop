@@ -15,6 +15,7 @@ builder.Services.AddScoped<IOrderRepository,      OrderRepository>();
 builder.Services.AddScoped<IOrderService,         OrderService>();
 builder.Services.AddScoped<ICustomerRepository,      CustomerRepository>();
 builder.Services.AddScoped<ICustomerService,         CustomerService>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IShoppingCartService,  ShoppingCartService>();
 
 // 2) Controllers

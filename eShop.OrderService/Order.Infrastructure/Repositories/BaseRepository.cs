@@ -25,16 +25,18 @@ public class BaseRepository<T> : IRepository<T> where T : class
         await _ctx.SaveChangesAsync(ct);
         return entity;
     }
-    public async Task UpdateAsync(T entity, CancellationToken ct = default)
+    public async Task<T> UpdateAsync(T entity, CancellationToken ct = default)
     {
         _ctx.Entry(entity).State = EntityState.Modified;
         await _ctx.SaveChangesAsync(ct);
+        return entity;
     }
 
-    public async Task DeleteAsync(int id, CancellationToken ct = default)
+    public async Task<bool> DeleteAsync(int id, CancellationToken ct = default)
     {
         var entity = await GetByIdAsync(id, ct) ?? throw new KeyNotFoundException();
         _ctx.Set<T>().Remove(entity);
         await _ctx.SaveChangesAsync(ct);
+        return true;
     }
 }
