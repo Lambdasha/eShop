@@ -10,11 +10,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class CustomerRepository : ICustomerRepository
+public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
 {
-    private readonly OrderDbContext _ctx;
-    public CustomerRepository(OrderDbContext ctx) 
-        => _ctx = ctx;
+    public CustomerRepository(OrderDbContext ctx) : base(ctx)
+    {
+    }
 
     // ────────── Customer ──────────
 
