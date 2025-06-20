@@ -13,6 +13,8 @@ builder.Services.AddDbContext<OrderDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("OrderDbConnection")));
 builder.Services.AddScoped<IOrderRepository,      OrderRepository>();
 builder.Services.AddScoped<IOrderService,         OrderService>();
+builder.Services.AddScoped<ICustomerRepository,      CustomerRepository>();
+builder.Services.AddScoped<ICustomerService,         CustomerService>();
 builder.Services.AddScoped<IShoppingCartService,  ShoppingCartService>();
 
 // 2) Controllers
