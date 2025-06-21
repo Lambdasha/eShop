@@ -12,4 +12,8 @@ public class Customer
 
     // 1→N: Customer → UserAddresses
     public ICollection<UserAddress> UserAddresses { get; set; } = new List<UserAddress>();
+    
+    // 1→N: Customer → ShoppingCart
+    public ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        = new List<ShoppingCart>();
 }

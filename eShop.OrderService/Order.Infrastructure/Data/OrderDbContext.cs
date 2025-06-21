@@ -56,6 +56,20 @@ namespace Order.Infrastructure.Data
               .HasMany(pt => pt.PaymentMethods)
               .WithOne(pm => pm.Type)
               .HasForeignKey(pm => pm.PaymentTypeId);
+            
+            // ShoppingCart → Customer
+            mb.Entity<ShoppingCart>()
+              .HasOne(sc => sc.Customer)
+              .WithMany(c => c.ShoppingCarts)
+              .HasForeignKey(sc => sc.CustomerId)
+              .IsRequired()
+              .OnDelete(DeleteBehavior.Cascade);
+
+            // ShoppingCart → Items
+            mb.Entity<ShoppingCart>()
+              .HasMany(sc => sc.Items)
+              .WithOne(i => i.Cart)
+              .HasForeignKey(i => i.CartId);
         }
     }
 }
