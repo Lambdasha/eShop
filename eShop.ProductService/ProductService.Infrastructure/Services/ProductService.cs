@@ -16,21 +16,29 @@ public class ProductService : IProductService
         => _repo = repo;
 
     public async Task<PaginatedResult<ProductDto>> GetProductsAsync(
-        int page, int size, int? categoryId = null)
+        int page,
+        int size,
+        int? categoryId = null)
     {
-        // start from IQueryable<Product>
+        // 1) start from the base query
         var query = _repo.Query();
 
+        // 2) apply category filter if provided
         if (categoryId.HasValue)
-            query = query.Where(p => p.CategoryId == categoryId);
+            query = query.Where(p => p.CategoryId == categoryId.Value);
 
+        // 3) get total count before paging
         var total = await query.CountAsync();
-        var items = await query
+
+        // 4) apply paging
+        var products = await query
             .Skip((page - 1) * size)
             .Take(size)
             .ToListAsync();
 
-        var dtos = items.Select(p => new ProductDto {
+        // 5) project to DTOs
+        var items = products.Select(p => new ProductDto
+        {
             Id           = p.Id,
             Name         = p.Name,
             Description  = p.Description,
@@ -41,18 +49,19 @@ public class ProductService : IProductService
             SKU          = p.SKU
         });
 
-        return new PaginatedResult<ProductDto> {
+        // 6) return paginated result
+        return new PaginatedResult<ProductDto>
+        {
             Page       = page,
             Size       = size,
             TotalCount = total,
-            Items      = dtos
+            Items      = items
         };
     }
 
     public async Task<ProductDto?> GetByIdAsync(int id)
     {
-        var p = await _repo.Query()
-            .FirstOrDefaultAsync(x => x.Id == id);
+        var p = await _repo.GetByIdAsync(id);
 
         if (p == null) return null;
 
@@ -67,6 +76,27 @@ public class ProductService : IProductService
             SKU          = p.SKU
         };
     }
+    
+    public async Task<IEnumerable<ProductDto>> GetByNameAsync(string name)
+    {
+        var products = await _repo
+            .Query()
+            .Where(p => p.Name.Contains(name))
+            .ToListAsync();
+        // still materialize here
+
+        return products.Select(p => new ProductDto {
+            Id           = p.Id,
+            Name         = p.Name,
+            Description  = p.Description,
+            CategoryId   = p.CategoryId,
+            Price        = p.Price,
+            Qty          = p.Qty,
+            ProductImage = p.ProductImage,
+            SKU          = p.SKU
+        });
+    }
+
 
     public async Task<ProductDto> CreateAsync(CreateProductDto dto)
     {
@@ -123,4 +153,10 @@ public class ProductService : IProductService
 
     public Task<bool> DeleteAsync(int id)
         => _repo.DeleteAsync(id);
+    
+    public Task<bool> InactivateAsync(int id)
+    {
+        // optional business checks here
+        return _repo.InactivateAsync(id);
+    }
 }

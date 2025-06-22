@@ -1,0 +1,12 @@
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/bin/Debug/net9.0/ProductService.Domain.deps.json
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/bin/Debug/net9.0/ProductService.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/bin/Debug/net9.0/ProductService.Domain.pdb
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ProductService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ProductService.Domain.AssemblyInfoInputs.cache
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ProductService.Domain.AssemblyInfo.cs
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ProductService.Domain.csproj.CoreCompileInputs.cache
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ProductService.Domain.sourcelink.json
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ProductService.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/refint/ProductService.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ProductService.Domain.pdb
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Domain/obj/Debug/net9.0/ref/ProductService.Domain.dll

@@ -8,5 +8,4 @@ using System.Threading.Tasks;
 
 public interface ICategoryVariationRepository : IRepository<CategoryVariation>
 {
-    Task<IEnumerable<CategoryVariation>> GetByCategoryIdAsync(int categoryId, CancellationToken ct = default);
 }

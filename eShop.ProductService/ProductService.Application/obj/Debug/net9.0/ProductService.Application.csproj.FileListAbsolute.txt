@@ -1,0 +1,16 @@
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/bin/Debug/net9.0/ProductService.Application.deps.json
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/bin/Debug/net9.0/ProductService.Application.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/bin/Debug/net9.0/ProductService.Application.pdb
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/bin/Debug/net9.0/ProductService.Domain.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/bin/Debug/net9.0/ProductService.Domain.pdb
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.csproj.AssemblyReference.cache
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.AssemblyInfoInputs.cache
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.AssemblyInfo.cs
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.csproj.CoreCompileInputs.cache
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.sourcelink.json
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductS.46A6959E.Up2Date
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/refint/ProductService.Application.dll
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ProductService.Application.pdb
+/Users/echo/Documents/JINGSHU/Antra/Antra_Web/eShop_Microservices/eShop.ProductService/ProductService.Application/obj/Debug/net9.0/ref/ProductService.Application.dll
