@@ -99,7 +99,7 @@ public class ProductDbContext : DbContext
             b.HasOne(x => x.VariationValue)
              .WithMany(x => x.ProductVariationValues)
              .HasForeignKey(x => x.VariationValueId)
-             .OnDelete(DeleteBehavior.Cascade);
+             .OnDelete(DeleteBehavior.Restrict);
         });
     }
 }
